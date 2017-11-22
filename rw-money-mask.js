@@ -23,6 +23,13 @@
       ngModelCtrl.$render = function () {
         display = $filter('number')(cents / 100, 2);
 
+        if (attrs.placeholder) {
+          if (Number(display) === 0) {
+            element.val('');
+            return;
+          }
+        }
+
         if (attrs.moneyMaskPrepend) {
           display = attrs.moneyMaskPrepend + ' ' + display;
         }
